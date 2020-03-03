@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="1" failed="0" skipped="1">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2020-03-02T13:48:21 IST" name="Default suite" finished-at="2020-03-02T13:50:10 IST" duration-ms="109039">
+    <groups>
+    </groups>
+    <test started-at="2020-03-02T13:48:21 IST" name="Default test" finished-at="2020-03-02T13:50:10 IST" duration-ms="109039">
+      <class name="IGPPack.TestCases.LoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6]" started-at="2020-03-02T13:48:21 IST" name="setUp" finished-at="2020-03-02T13:48:21 IST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="loginTest(java.util.HashMap)[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6]" started-at="2020-03-02T13:48:21 IST" name="loginTest" data-provider="getData" finished-at="2020-03-02T13:48:22 IST" duration-ms="208" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=N, ExpectedResult=Success, Username=riteshranjanmishra938@gmail.com, Browser=Firefox, Password=ritesh12}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              <![CDATA[throwing exception becouse runmode set to N]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.SkipException: throwing exception becouse runmode set to N
+at IGPPack.TestCases.LoginTest.loginTest(LoginTest.java:58)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:134)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:597)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:816)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+at org.testng.TestRunner.privateRun(TestRunner.java:766)
+at org.testng.TestRunner.run(TestRunner.java:587)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1187)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1109)
+at org.testng.TestNG.runSuites(TestNG.java:1039)
+at org.testng.TestNG.run(TestNG.java:1007)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6]" started-at="2020-03-02T13:48:22 IST" name="tearDown" finished-at="2020-03-02T13:48:22 IST" duration-ms="352" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginTest status=SKIP method=LoginTest.loginTest(java.util.HashMap)[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method signature="loginTest(java.util.HashMap)[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6]" started-at="2020-03-02T13:48:22 IST" name="loginTest" data-provider="getData" finished-at="2020-03-02T13:50:09 IST" duration-ms="107453" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=Y, ExpectedResult=Success, Username=riteshranjanmishra938@gmail.com, Browser=Chrome, Password=ritesh12}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6]" started-at="2020-03-02T13:50:09 IST" name="tearDown" finished-at="2020-03-02T13:50:10 IST" duration-ms="121" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginTest status=SUCCESS method=LoginTest.loginTest(java.util.HashMap)[pri:0, instance:IGPPack.TestCases.LoginTest@161479c6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- IGPPack.TestCases.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
