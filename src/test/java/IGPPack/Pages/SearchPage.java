@@ -1,15 +1,13 @@
 	package IGPPack.Pages;
 
 	import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
+	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+	import org.openqa.selenium.support.PageFactory;
+	import org.openqa.selenium.support.ui.Select;
+	import com.relevantcodes.extentreports.ExtentTest;
+	import com.relevantcodes.extentreports.LogStatus;
 	
 	public class SearchPage {
 		
@@ -74,7 +72,9 @@ import com.relevantcodes.extentreports.LogStatus;
 	
 	test.log(LogStatus.INFO, "I click on search box");
 	
-	driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+	WebDriverWait wait=new WebDriverWait(driver, 30);
+    
+   	wait.until(ExpectedConditions.elementToBeClickable(selectItem));
 	
 	selectItem.click();
 	
@@ -86,19 +86,19 @@ import com.relevantcodes.extentreports.LogStatus;
 	
 	test.log(LogStatus.INFO, "I enter pincode");
 	
-	driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
+	wait.until(ExpectedConditions.elementToBeClickable(location));
 	
 	location.click();
 	
 	test.log(LogStatus.INFO, "I chose address");
 	
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+	wait.until(ExpectedConditions.elementToBeClickable(deliveryType));
 		
 	deliveryType.click();
 	
 	test.log(LogStatus.INFO, "I chose delivery type");
 	
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+	wait.until(ExpectedConditions.elementToBeClickable(calender));
 	
 	calender.click();
 	
@@ -118,13 +118,13 @@ import com.relevantcodes.extentreports.LogStatus;
 	
 	test.log(LogStatus.INFO, "I click on buy button");
 	
-	driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
+	wait.until(ExpectedConditions.elementToBeClickable(checkOut));
 	
 	checkOut.click();
 	
 	test.log(LogStatus.INFO, "I checkOut");
 	
-	driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
+	wait.until(ExpectedConditions.elementToBeClickable(Delivery));
 	
 	Delivery.click();
 		
