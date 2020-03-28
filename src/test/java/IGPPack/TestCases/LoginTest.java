@@ -108,9 +108,9 @@
 	@AfterMethod
 	public void tearDown(ITestResult result) {
 		
-    if(ITestResult.FAILURE==result.getStatus()){
+        if(ITestResult.FAILURE==result.getStatus()){
     	
-    test.log(LogStatus.FAIL, result.getName().toUpperCase()+" Failed with exception : "+result.getThrowable());
+        test.log(LogStatus.FAIL, result.getName().toUpperCase()+" Failed with exception : "+result.getThrowable());
     	
 	takeScreenshot();
 	
