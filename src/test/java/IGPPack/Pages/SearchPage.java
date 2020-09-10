@@ -15,40 +15,40 @@
 	ExtentTest test;
 		
 	@FindBy(name="q")
-	public WebElement searchItem;
+	private WebElement searchItem;
 	
 	@FindBy(css="*[class^='s-icon']")
-	public WebElement searchBox;
+	private WebElement searchBox;
 	
 	@FindBy(xpath="//*[text()='Black Forest Cake (Half Kg)']")
-	public WebElement selectItem;
+	private WebElement selectItem;
 	
 	@FindBy(id="location-input")
-	public WebElement locationPincode;
+	private WebElement locationPincode;
 	
 	@FindBy(xpath="//*[text()='Pimpri-Chinchwad, Maharashtra 411033, India']")
-	public WebElement location;
+	private WebElement location;
 	
 	@FindBy(css="*[class^='fixdate-amt']")
-	public WebElement deliveryType;
+	private WebElement deliveryType;
 	
 	@FindBy(id="datepicker-fixed-date")
-	public WebElement calender;
+	private WebElement calender;
 	
 	@FindBy(xpath="//*[@id=\"datepicker-fixed-date_table\"]/tbody/tr[5]/td[6]/div")
-	public WebElement datePicker;
+	private WebElement datePicker;
 	
 	@FindBy(id="timepicker1")
-	public WebElement selectTime;
+	private WebElement selectTime;
 	
 	@FindBy(id="buy-now")
 	public WebElement BuyNow;
 	
 	@FindBy(css="*[class^='c-btn-po']")
-	public WebElement checkOut;
+	private WebElement checkOut;
 	
 	@FindBy(xpath="//*[text()='Deliver Here']")
-	public WebElement Delivery;
+	private WebElement Delivery;
 	
 	public SearchPage(WebDriver driver,ExtentTest test) {
 		
