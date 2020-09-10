@@ -13,13 +13,13 @@
 	ExtentTest test;
 	
 	@FindBy(id="com-e-m-field")
-	public WebElement loginField;
+	private WebElement loginField;
 	
 	@FindBy(name="passwd")
-	public WebElement Password;
+	private WebElement Password;
 	
 	@FindBy(xpath="//*[text()='Login']")
-	public WebElement loginButton;
+	private WebElement loginButton;
 	
 	public LoginPage(WebDriver driver,ExtentTest test) {
 		
