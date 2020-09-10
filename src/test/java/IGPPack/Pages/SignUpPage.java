@@ -5,9 +5,8 @@
 	import org.openqa.selenium.support.FindBy;
 	import org.openqa.selenium.support.PageFactory;
 	import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
-
-import IGPPack.Base.base;
+	import com.relevantcodes.extentreports.LogStatus;
+	import IGPPack.Base.base;
 	
 	public class SignUpPage extends base {
 		
@@ -15,31 +14,31 @@ import IGPPack.Base.base;
 	ExtentTest test;
 		
 	@FindBy(id="email")
-	public WebElement Email;
+	private WebElement Email;
 	
 	@FindBy(id="passwd")
-	public WebElement password;
+	private WebElement password;
 	
 	@FindBy(name="cname")
-	public WebElement country;
+	private WebElement country;
 	
 	@FindBy(xpath="//*[text()='Submit']")
-	public WebElement submit;
+	private WebElement submit;
 	
 	@FindBy(name="fname")
-	public WebElement firstName;
+	private WebElement firstName;
 	
 	@FindBy(name="lname")
-	public WebElement lasttName;
+	private WebElement lasttName;
 	
 	@FindBy(name="dob")
-	public WebElement DOB;
+	private WebElement DOB;
 	
 	@FindBy(xpath="//*[@id=\"P974976583_table\"]/tbody/tr[4]/td[6]/div")
-	public WebElement date;
+	private WebElement date;
 	
 	@FindBy(xpath="//*[text()='Sign me up!']")
-	public WebElement SignUp;
+	private WebElement SignUp;
 	
 	public SignUpPage(WebDriver driver,ExtentTest test ) {
 		
