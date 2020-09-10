@@ -16,19 +16,19 @@
 	ExtentTest test;
 	
 	@FindBy(name="q")
-	public WebElement SearchBox;
+	private WebElement SearchBox;
 	
 	@FindBy(className="s-panel-icon")
-	public WebElement SearchButton;
+	private WebElement SearchButton;
 	
 	@FindBy(id="user-menu")
-	public WebElement Account;
+	private WebElement Account;
 	
 	@FindBy(css="*[class^='click-listener']")
-	public WebElement login;
+	private WebElement login;
 	
 	@FindBy(xpath="//*[text()='New User? Sign Up']")
-	public WebElement SignUp;
+	private WebElement SignUp;
 	
 	public LaunchPage(WebDriver driver,ExtentTest test) {
 		
