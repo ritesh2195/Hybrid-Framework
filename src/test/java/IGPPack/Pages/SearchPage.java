@@ -42,7 +42,7 @@
 	private WebElement selectTime;
 	
 	@FindBy(id="buy-now")
-	public WebElement BuyNow;
+	private WebElement BuyNow;
 	
 	@FindBy(css="*[class^='c-btn-po']")
 	private WebElement checkOut;
