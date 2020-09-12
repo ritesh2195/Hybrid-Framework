@@ -48,7 +48,7 @@
 	
  	WebDriverWait wait=new WebDriverWait(driver, 20);
     
-        wait.until(ExpectedConditions.elementToBeClickable(login));
+    wait.until(ExpectedConditions.elementToBeClickable(login));
 	
 	login.click();
 	

@@ -3,6 +3,7 @@
 	import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+	import org.testng.annotations.Listeners;
 	import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -11,6 +12,8 @@ import IGPPack.Base.base;
 import IGPPack.Pages.LaunchPage;
 import IGPPack.Pages.SignUpPage;
 import IGPPack.Utilities.ExtentManager;
+
+	@Listeners(ListenerTest.class)
 	
 	public class SignUpTest extends base {
 	

@@ -1,12 +1,12 @@
 	package IGPPack.TestCases;
 
 	import java.util.HashMap;
+	import IGPPack.Pages.ValidationPage;
+	import org.testng.Assert;
+	import org.testng.asserts.SoftAssert;
 	import org.testng.ITestResult;
 	import org.testng.SkipException;
-	import org.testng.annotations.AfterMethod;
-	import org.testng.annotations.BeforeClass;
-	import org.testng.annotations.DataProvider;
-	import org.testng.annotations.Test;
+	import org.testng.annotations.*;
 	import com.relevantcodes.extentreports.LogStatus;
 	import IGPPack.Base.base;
 	import IGPPack.Pages.LaunchPage;
@@ -14,16 +14,11 @@
 	import IGPPack.Utilities.DataUtil;
 	import IGPPack.Utilities.ExtentManager;
 	import IGPPack.Utilities.MyXLSReader1;
+
+	@Listeners(ListenerTest.class)
 	
-	public class LoginTest extends base {
-		
-	@BeforeClass
-	public void setUp() {
-		
-	readPropertyFile();
-		
-	}
-	
+	public class LoginTest extends BaseClass {
+
 	@DataProvider
 	public Object[][] getData() {
 		
@@ -31,9 +26,11 @@
 		
 	try{
 		
-	xls=new MyXLSReader1(prop.getProperty("excelFilePath"));
+	//xls=new MyXLSReader1(prop.getProperty("excelFilePath"));
+
+	xls=new MyXLSReader1(config.getExcelFilePath());
 	
-	obj=DataUtil.getTestData(xls, "LoginTest", "Data");
+	obj = DataUtil.getTestData(xls, "LoginTest", "Data");
 	
 	} catch(Exception e) {
 		
@@ -59,11 +56,11 @@
 		
 	}
 		
-	openingBrowser(map.get("Browser"));
+	//openingBrowser(map.get("Browser"));
 	
 	test.log(LogStatus.INFO, "Browser got opened");
 	
-	navigate("AppURL");
+	//navigate("AppURL");
 	
 	test.log(LogStatus.INFO, "Application url got launched");
 	
@@ -74,61 +71,45 @@
 	Thread.sleep(5000);
 	
 	LoginPage loginPage=new LoginPage(driver, test);
-	
-	loginPage.doLogin(map.get("Username"),map.get("Password"));
-	
-	boolean actualResult=isElementPresent();
-	
-	String expectedRes = map.get("ExpectedResult");
-	
-	boolean expectedResult = false;
-		
-	if(expectedRes.equalsIgnoreCase("Failure")) {
-			
-	expectedResult = false;
-			
-	}else if(expectedRes.equalsIgnoreCase("Success")) {
-			
-	expectedResult = true;
-			
-		}
-		
-	if(actualResult==expectedResult) {
-			
-	reportPass("LoginTest got passed");
-			
-	}else {
-			
-	reportFail("LoginTest got failed");
-			
-		}
-		
+
+    loginPage.doLogin(map.get("Username"), map.get("Password"));
+
+    ValidationPage validationPage = new ValidationPage(driver);
+
+    String expectedRes = map.get("ExpectedResult");
+
+    boolean expectedResult = true;
+
+	if (expectedRes.equalsIgnoreCase("Success")) {
+
+	} else if (expectedRes.equalsIgnoreCase("Failure")) {
+
+     expectedResult = false;
+
+        }
+
+     if (expectedResult) {
+
+		 boolean actualResult = validationPage.verifyLoginTest();
+
+		 if (actualResult == expectedResult) {
+
+			 reportPass("LoginTest got passed");
+
+			 loginPage.Logout();
+
+		 }
+	 }
+     else {
+
+	  loginPage.navigateHomePage();
+
+      reportFail("LoginTest got failed");
+
+      Assert.fail("LoginTest got failed");
+
+        }
+
 	}
-	
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-		
-        if(ITestResult.FAILURE==result.getStatus()){
-    	
-        test.log(LogStatus.FAIL, result.getName().toUpperCase()+" Failed with exception : "+result.getThrowable());
-    	
-	takeScreenshot();
-	
- }
-	if(report!=null) {
-		
-	report.endTest(test);
-	
-	report.flush();
-	
-	if(driver!=null) {
-		
-	driver.quit();	
-		
-	}
-		
-	}
-		
-	}
-	
+
 	}
