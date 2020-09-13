@@ -1,5 +1,7 @@
 	package IGPPack.TestCases;
 
+	import IGPPack.Pages.ValidationPage;
+	import IGPPack.managers.PageObjectManager;
 	import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -15,15 +17,13 @@ import IGPPack.Utilities.ExtentManager;
 
 	@Listeners(ListenerTest.class)
 	
-	public class SignUpTest extends base {
-	
-	@BeforeClass
-	public void  setUp() {
-		
-	readPropertyFile();	
-		
-	}
-	
+	public class SignUpTest extends BaseClass {
+
+	PageObjectManager pageObjectManager;
+	LaunchPage launchPage;
+	SignUpPage signUpPage;
+	ValidationPage validationPage;
+
 	@Test
 	public void signUpTest() {
 		
@@ -33,60 +33,42 @@ import IGPPack.Utilities.ExtentManager;
 			
 	test.log(LogStatus.INFO, "SignUp Test started");
 		
-	openingBrowser(prop.getProperty("browserType"));
+	//openingBrowser(prop.getProperty("browserType"));
 	
 	test.log(LogStatus.INFO, "Browser got opened");
 	
-	navigate("AppURL");
+	//navigate("AppURL");
 	
 	test.log(LogStatus.INFO, "Application url got launched");
+
+	pageObjectManager = new PageObjectManager(driver,test);
+
+	launchPage = pageObjectManager.getLaunchPage();
 	
-	LaunchPage launchPage=new LaunchPage(driver, test);
+	//LaunchPage launchPage=new LaunchPage(driver, test);
 	
 	launchPage.goSignUp();
+
+	signUpPage = pageObjectManager.getSignUpPage();
 	
-	SignUpPage page=new SignUpPage(driver, test);
+	//SignUpPage signUpPage=new SignUpPage(driver, test);
 	
-	page.doSignUp();
+	signUpPage.doSignUp();
+
+	validationPage = pageObjectManager.getValidationPage();
 	
-	boolean result=verifyingSignUp();
+	boolean result=validationPage.verifySignUpTest();
 	
-	if(result==true) {
+	if(result) {
 		
 	reportPass("SignUp Test is Successfull");
 		
-	}else if(result==false) {
+	}else {
 		
 	reportFail("SignUp Test is not Successfull");	
 		
 	}
 	
 	}
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-		
-	if(ITestResult.FAILURE==result.getStatus()) {
-		
-	test.log(LogStatus.FAIL, result.getName().toUpperCase()+" Failed with exception : "+result.getThrowable());
-    	
-	takeScreenshot();
-		
-	}
-	
-	if(report!=null) {
-		
-	report.endTest(test);
-		
-	report.flush();
-		
-	if(driver!=null) {
-			
-	driver.quit();	
-			
-		}
-			
-		}
-		
-	}
-	
+
 	}

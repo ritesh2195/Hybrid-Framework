@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 public class BaseClass {
 
     ReadConfig config;
-    public WebDriver driver;
-    public ExtentTest test;
+    public static WebDriver driver;
+    public static ExtentTest test;
     public ExtentReports report;
     public MyXLSReader1 xls;
 
@@ -57,17 +57,21 @@ public class BaseClass {
 
     }
 
-    public void takeScreenshot() {
+    public static String takeScreenshot() {
 
         Date d=new Date();
 
-        String screenshotFile=d.toString().replace(":", "_").replace(" ", "_")+".png";
+        String screenshotFile=System.getProperty("user.dir")+"/screenshots/"+d.toString().replace(":", "_").replace(" ", "_")+".png";
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
+        File destination=new File(screenshotFile);
+
         try {
 
-            FileUtils.copyFile(scrFile, new File("screenshots//"+screenshotFile));
+            FileUtils.copyFile(scrFile,destination);
+
+           // FileUtils.copyFile(scrFile, new File("screenshots//"+screenshotFile));
 
         } catch (IOException e) {
 
@@ -75,7 +79,9 @@ public class BaseClass {
 
         }
 
-        test.log(LogStatus.INFO,"Screenshot-> "+ test.addScreenCapture(System.getProperty("user.dir")+"//screenshots//"+screenshotFile));
+        return screenshotFile;
+
+        //test.log(LogStatus.INFO,"Screenshot-> "+ test.addScreenCapture(System.getProperty("user.dir")+"//screenshots//"+screenshotFile));
 
     }
 

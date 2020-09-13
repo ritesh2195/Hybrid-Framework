@@ -1,5 +1,6 @@
   package IGPPack.Pages;
 
+	import IGPPack.Utilities.WaitsUtil;
 	import org.openqa.selenium.By;
 	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@
 		
 	WebDriver driver;
 	ExtentTest test;
+	WaitsUtil waitsUtil;
 	
 	@FindBy(name="q")
 	private WebElement SearchBox;
@@ -57,12 +59,16 @@
 	}
 	
 	public void goSignUp() {
+
+	waitsUtil =new WaitsUtil(driver,10);
 		
 	Account.click();
+
+	waitsUtil.waitForElementToClickable(SignUp);
 	
-	WebDriverWait wait = new WebDriverWait(driver, 10);
+	//WebDriverWait wait = new WebDriverWait(driver, 10);
 	 
-	SignUp = wait.until(ExpectedConditions.elementToBeClickable(SignUp));
+	//SignUp = wait.until(ExpectedConditions.elementToBeClickable(SignUp));
 	
 	SignUp.click();
 		

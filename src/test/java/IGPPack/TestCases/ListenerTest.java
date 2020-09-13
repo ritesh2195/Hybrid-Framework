@@ -10,6 +10,9 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.relevantcodes.extentreports.LogStatus;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -20,7 +23,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ListenerTest implements ITestListener {
+public class ListenerTest extends BaseClass implements ITestListener {
 
     ExtentHtmlReporter htmlReporter;
     ExtentReports reports;
@@ -72,38 +75,25 @@ public class ListenerTest implements ITestListener {
 
       test.log(Status.FAIL,result.getThrowable());
 
-      Date d=new Date();
+        Date d=new Date();
 
-      String screenshotFile=d.toString().replace(":", "_").replace(" ", "_")+".png";
+        String screenshotFile=d.toString().replace(":", "_").replace(" ", "_")+".png";
+
+        String temp=BaseClass.takeScreenshot();
 
         try {
 
-        test.addScreenCaptureFromPath(screenshotFile);
+            test.fail(result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
 
         } catch (IOException e) {
 
             e.printStackTrace();
         }
 
-        String screenshotPath=System.getProperty("user.dir")+"/Screenshots/"+result.getName()+".png";
-
-      File file = new File(screenshotPath);
-
-        if(file.exists())
-        {
-        try {
-
-         test.fail("Screenshot is below:" + test.addScreenCaptureFromPath(screenshotPath));
-
-         } catch (IOException e) {
-
-         e.printStackTrace();
-
-            }
         }
 
 
-    }
+
 
     public void onTestSkipped(ITestResult result){
 
