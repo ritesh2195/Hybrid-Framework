@@ -1,6 +1,7 @@
 	package IGPPack.TestCases;
 
 	import IGPPack.Pages.ValidationPage;
+	import IGPPack.Utilities.Constant;
 	import IGPPack.managers.PageObjectManager;
 	import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -53,13 +54,36 @@ import IGPPack.Utilities.ExtentManager;
 	
 	//SignUpPage signUpPage=new SignUpPage(driver, test);
 	
-	signUpPage.doSignUp();
+	signUpPage.setEmail(Constant.mail);
+
+	signUpPage.setPassword(Constant.password);
+
+	signUpPage.setCountry(Constant.country);
+
+	signUpPage.setMobileNo(Constant.mobile);
+
+	signUpPage.clickSubmit();
+
+	signUpPage.setFirstName(Constant.firstName);
+
+	signUpPage.setLastName(Constant.lastName);
+
+	signUpPage.setDOB();
+
+	signUpPage.clickSignUp();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
 
 	validationPage = pageObjectManager.getValidationPage();
 	
-	boolean result=validationPage.verifySignUpTest();
+	String result=validationPage.verifySignUpTest();
 	
-	if(result) {
+	if(result==Constant.mail) {
 		
 	reportPass("SignUp Test is Successfull");
 		

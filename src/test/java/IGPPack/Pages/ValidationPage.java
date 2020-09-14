@@ -1,11 +1,14 @@
 package IGPPack.Pages;
 
+import IGPPack.Utilities.WaitsUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ValidationPage {
+
+    WaitsUtil waitsUtil;
 
     WebDriver driver;
 
@@ -17,6 +20,12 @@ public class ValidationPage {
 
     @FindBy(xpath = "//*[text()='CP']")
     private WebElement singupPageElement;
+
+    @FindBy(id = "user-menu")
+    private WebElement Account;
+
+    @FindBy(xpath = "//div[@class='user-details']//p[2]")
+    private WebElement email;
 
     public ValidationPage(WebDriver driver){
 
@@ -35,8 +44,14 @@ public class ValidationPage {
         return searchPageElement.isDisplayed();
     }
 
-    public boolean verifySignUpTest(){
+    public String verifySignUpTest(){
 
-        return singupPageElement.isDisplayed();
+//        waitsUtil=new WaitsUtil(driver,20);
+//
+//        waitsUtil.waitForElementToClickable(Account);
+
+        Account.click();
+
+        return email.getText();
     }
 }
