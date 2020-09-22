@@ -83,7 +83,7 @@ import IGPPack.Utilities.ExtentManager;
 	
 	String result=validationPage.verifySignUpTest();
 	
-	if(result==Constant.mail) {
+	if(result.equals(Constant.mail)) {
 		
 	reportPass("SignUp Test is Successfull");
 		

@@ -2,17 +2,17 @@ package IGPPack.Utilities;
 
 public class Constant {
 
-    public static final String mail="xyshgdl5fm@gmail.com";
+    public static String mail=RandomDataGenerator.generateEmail();
 
-    public static final String password="hvsgh25hbjbhjs";
+    public static String password=RandomDataGenerator.generatePassword();
 
     public static final String country="India";
 
-    public static final String mobile="9545664295";
+    public static String mobile=RandomDataGenerator.generateMobile();
 
-    public static final String firstName="Mohitlja";
+    public static String firstName=RandomDataGenerator.generateFirstName();
 
-    public static final String lastName="Surai";
+    public static String lastName=RandomDataGenerator.generateLastName();
 
 
 }
