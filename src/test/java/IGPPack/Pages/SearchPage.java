@@ -1,6 +1,8 @@
 	package IGPPack.Pages;
 
 	import java.util.concurrent.TimeUnit;
+
+	import IGPPack.Utilities.WaitsUtil;
 	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.support.FindBy;
@@ -15,11 +17,12 @@
 		
 	WebDriver driver;
 	ExtentTest test;
+	WaitsUtil waitsUtil;
 		
 	@FindBy(name="q")
 	private WebElement searchItem;
 	
-	@FindBy(css="*[class^='s-icon']")
+	@FindBy(xpath="//*[@class='s-icon s-panel-icon']")
 	private WebElement searchBox;
 	
 	@FindBy(xpath="//*[text()='Black Forest Cake (Half Kg)']")
@@ -27,9 +30,15 @@
 	
 	@FindBy(id="location-input")
 	private WebElement locationPincode;
+
+	@FindBy(id = "pinCheck")
+	private WebElement pinCodeCheck;
 	
 	@FindBy(xpath="//*[text()='Pimpri-Chinchwad, Maharashtra 411033, India']")
 	private WebElement location;
+
+	@FindBy(xpath = "//label[@class='sameday-amt delivery-type-text']")
+	private WebElement deliveryDate;
 	
 	@FindBy(css="*[class^='fixdate-amt']")
 	private WebElement deliveryType;
@@ -40,7 +49,7 @@
 	@FindBy(xpath="//*[@id=\"datepicker-fixed-date_table\"]/tbody/tr[5]/td[6]/div")
 	private WebElement datePicker;
 	
-	@FindBy(id="timepicker1")
+	@FindBy(id="timepicker_sdd")
 	private WebElement selectTime;
 	
 	@FindBy(id="buy-now")
@@ -59,76 +68,73 @@
 	this.test=test;
 	
 	PageFactory.initElements(driver, this);
+
+	waitsUtil= new WaitsUtil(driver,10);
 		
 	}
-	
-	public void searchingItem(String item, String pinCode)  {
-		
+
+	public void searchItem(String item){
+
 	searchItem.clear();
-		
+
 	searchItem.sendKeys(item);
-	
+
 	test.log(LogStatus.INFO, "I search item");
-	
+
+	waitsUtil.waitForElementToClickable(searchBox);
+
 	searchBox.click();
-	
+
 	test.log(LogStatus.INFO, "I click on search box");
-	
-	WebDriverWait wait=new WebDriverWait(driver, 30);
-    
-   	wait.until(ExpectedConditions.elementToBeClickable(selectItem));
-	
-	selectItem.click();
-	
-	test.log(LogStatus.INFO, "I select item");
-	
-	locationPincode.clear();
-	
-	locationPincode.sendKeys(pinCode);
-	
-	test.log(LogStatus.INFO, "I enter pincode");
-	
-	wait.until(ExpectedConditions.elementToBeClickable(location));
-	
-	location.click();
-	
-	test.log(LogStatus.INFO, "I chose address");
-	
-	wait.until(ExpectedConditions.elementToBeClickable(deliveryType));
-		
-	deliveryType.click();
-	
-	test.log(LogStatus.INFO, "I chose delivery type");
-	
-	wait.until(ExpectedConditions.elementToBeClickable(calender));
-	
-	calender.click();
-	
-	test.log(LogStatus.INFO, "I click on calender");
-	
-	datePicker.click();
-	
-	test.log(LogStatus.INFO, "I select date");
-	
-	Select select=new Select(selectTime);
-	
-	select.selectByVisibleText("9:00 hrs - 13:00 hrs");
-	
-	test.log(LogStatus.INFO, "I select timing");
-	
-	BuyNow.click();
-	
-	test.log(LogStatus.INFO, "I click on buy button");
-	
-	wait.until(ExpectedConditions.elementToBeClickable(checkOut));
-	
-	checkOut.click();
-	
-	test.log(LogStatus.INFO, "I checkOut");
-	
-	wait.until(ExpectedConditions.elementToBeClickable(Delivery));
-	
-	Delivery.click();
-		
+
 	}
+
+	public void selectProduct(){
+
+	waitsUtil.waitForElementToClickable(selectItem);
+
+	selectItem.click();
+
+	test.log(LogStatus.INFO, "I click on search box");
+
+	}
+
+	public void setDeliveryDetails(String pincode){
+
+		locationPincode.sendKeys(pincode);
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		deliveryDate.click();
+
+		waitsUtil.waitForVisibilityOfElement(selectTime);
+
+		Select select=new Select(selectTime);
+
+		select.selectByVisibleText("9:00 hrs - 13:00 hrs");
+
+		test.log(LogStatus.INFO, "I select timing");
+
+		BuyNow.click();
+
+	}
+
+	public void checkOutProduct(){
+
+		waitsUtil.waitForVisibilityOfElement(checkOut);
+
+		checkOut.click();
+	}
+
+	public void setDelivery(){
+
+		waitsUtil.waitForVisibilityOfElement(Delivery);
+
+		Delivery.click();
+	}
+
 	}

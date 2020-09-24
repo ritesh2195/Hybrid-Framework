@@ -14,5 +14,17 @@ public class Constant {
 
     public static String lastName=RandomDataGenerator.generateLastName();
 
+    // Search Details
+
+    public static final String loginEmail="rima@gmail.com";
+
+    public static final String loginPassword="rima12";
+
+    public static String Item="cake";
+
+    public static final String Pincode="411033";
+
+
+
 
 }
