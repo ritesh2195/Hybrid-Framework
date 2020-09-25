@@ -3,6 +3,7 @@
 	import IGPPack.Pages.ValidationPage;
 	import IGPPack.Utilities.Constant;
 	import IGPPack.managers.PageObjectManager;
+	import org.testng.Assert;
 	import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -27,33 +28,15 @@ import IGPPack.Utilities.ExtentManager;
 
 	@Test
 	public void signUpTest() {
-		
-	report=ExtentManager.getInstance();
-		
-	test=report.startTest("LoginTest");
-			
-	test.log(LogStatus.INFO, "SignUp Test started");
-		
-	//openingBrowser(prop.getProperty("browserType"));
-	
-	test.log(LogStatus.INFO, "Browser got opened");
-	
-	//navigate("AppURL");
-	
-	test.log(LogStatus.INFO, "Application url got launched");
 
 	pageObjectManager = new PageObjectManager(driver,test);
 
 	launchPage = pageObjectManager.getLaunchPage();
-	
-	//LaunchPage launchPage=new LaunchPage(driver, test);
-	
+
 	launchPage.goSignUp();
 
 	signUpPage = pageObjectManager.getSignUpPage();
-	
-	//SignUpPage signUpPage=new SignUpPage(driver, test);
-	
+
 	signUpPage.setEmail(Constant.mail);
 
 	signUpPage.setPassword(Constant.password);
@@ -82,17 +65,10 @@ import IGPPack.Utilities.ExtentManager;
 	validationPage = pageObjectManager.getValidationPage();
 	
 	String result=validationPage.verifySignUpTest();
+
+	Assert.assertEquals(result,Constant.mail);
 	
-	if(result.equals(Constant.mail)) {
-		
-	reportPass("SignUp Test is Successfull");
-		
-	}else {
-		
-	reportFail("SignUp Test is not Successfull");	
-		
-	}
-	
+
 	}
 
 	}

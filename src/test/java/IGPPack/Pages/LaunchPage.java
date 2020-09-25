@@ -32,12 +32,10 @@
 	@FindBy(xpath="//*[text()='New User? Sign Up']")
 	private WebElement SignUp;
 	
-	public LaunchPage(WebDriver driver,ExtentTest test) {
+	public LaunchPage(WebDriver driver) {
 		
 	this.driver=driver;
-	
-	this.test=test;
-	
+
 	PageFactory.initElements(driver, this);
 		
 	}
@@ -45,17 +43,13 @@
 	public void goLogin() {
 	
 	Account.click();
-	
-	//test.log(LogStatus.INFO, "Clicked on Account BUtton");
-	
+
  	WebDriverWait wait=new WebDriverWait(driver, 20);
     
     wait.until(ExpectedConditions.elementToBeClickable(login));
 	
 	login.click();
-	
-	//test.log(LogStatus.INFO, "Clicked on Login Button");
-			
+
 	}
 	
 	public void goSignUp() {
@@ -65,11 +59,7 @@
 	Account.click();
 
 	waitsUtil.waitForElementToClickable(SignUp);
-	
-	//WebDriverWait wait = new WebDriverWait(driver, 10);
-	 
-	//SignUp = wait.until(ExpectedConditions.elementToBeClickable(SignUp));
-	
+
 	SignUp.click();
 		
 		

@@ -55,18 +55,12 @@
 	loginField.clear();
 		
 	loginField.sendKeys(loginId);
-	
-	//test.log(LogStatus.INFO, "Enter email on Email Id field");
 
 	Password.clear();
 	
 	Password.sendKeys(password);
-	
-	//test.log(LogStatus.INFO, "Enter passwor on Password Field");
-	
+
 	loginButton.click();
-	
-	//test.log(LogStatus.INFO, "Clicked on Login");
 
 	}
 

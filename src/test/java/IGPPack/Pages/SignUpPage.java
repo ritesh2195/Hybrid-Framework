@@ -53,7 +53,7 @@
 
 	WaitsUtil waitsUtil;
 	
-	public SignUpPage(WebDriver driver,ExtentTest test ) {
+	public SignUpPage(WebDriver driver ) {
 		
 	this.driver=driver;
 	

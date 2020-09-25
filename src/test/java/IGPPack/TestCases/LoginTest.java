@@ -3,12 +3,9 @@
 	import java.util.HashMap;
 	import IGPPack.Pages.ValidationPage;
 	import org.testng.Assert;
-	import org.testng.asserts.SoftAssert;
-	import org.testng.ITestResult;
 	import org.testng.SkipException;
 	import org.testng.annotations.*;
 	import com.relevantcodes.extentreports.LogStatus;
-	import IGPPack.Base.base;
 	import IGPPack.Pages.LaunchPage;
 	import IGPPack.Pages.LoginPage;
 	import IGPPack.Utilities.DataUtil;
@@ -43,28 +40,14 @@
 	}
 	@Test(dataProvider="getData")
 	public void loginTest(HashMap<String, String> map) throws InterruptedException {
-		
-	report=ExtentManager.getInstance();
-		
-	test=report.startTest("LoginTest");
-		
-	test.log(LogStatus.INFO, "LoginTest started");
-		
+
 	if(!DataUtil.isRunnable(xls, "LoginTest", "Testcases") || map.get("Runmode").equals("N")) {
 		
 	throw new SkipException("throwing exception becouse runmode set to N");	
 		
 	}
-		
-	//openingBrowser(map.get("Browser"));
-	
-	test.log(LogStatus.INFO, "Browser got opened");
-	
-	//navigate("AppURL");
-	
-	test.log(LogStatus.INFO, "Application url got launched");
-	
-	LaunchPage launchPage=new LaunchPage(driver, test);
+
+	LaunchPage launchPage=new LaunchPage(driver);
 	
 	launchPage.goLogin();
 	

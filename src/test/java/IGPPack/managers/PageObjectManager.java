@@ -22,7 +22,7 @@ public class PageObjectManager {
 
     public LaunchPage getLaunchPage(){
 
-        return (launchPage==null) ? launchPage = new LaunchPage(driver,test) : launchPage;
+        return (launchPage==null) ? launchPage = new LaunchPage(driver) : launchPage;
     }
 
     public LoginPage getLoginPage(){
@@ -32,12 +32,12 @@ public class PageObjectManager {
 
     public SearchPage getSearchPage(){
 
-        return (searchPage==null) ? searchPage = new SearchPage(driver,test) : searchPage;
+        return (searchPage==null) ? searchPage = new SearchPage(driver) : searchPage;
     }
 
     public SignUpPage getSignUpPage(){
 
-        return (signUpPage==null) ? signUpPage = new SignUpPage(driver,test) : signUpPage;
+        return (signUpPage==null) ? signUpPage = new SignUpPage(driver) : signUpPage;
     }
 
     public ValidationPage getValidationPage(){

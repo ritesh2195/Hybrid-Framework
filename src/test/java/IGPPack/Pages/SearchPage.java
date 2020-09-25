@@ -62,12 +62,10 @@
 	@FindBy(css="#deliver-btn-2587230")
 	private WebElement Delivery;
 	
-	public SearchPage(WebDriver driver,ExtentTest test) {
+	public SearchPage(WebDriver driver) {
 		
 	this.driver=driver;
-	
-	this.test=test;
-	
+
 	PageFactory.initElements(driver, this);
 
 	waitsUtil= new WaitsUtil(driver,10);
@@ -80,13 +78,9 @@
 
 	searchItem.sendKeys(item);
 
-	//test.log(LogStatus.INFO, "I search item");
-
 	waitsUtil.waitForElementToClickable(searchBox);
 
 	searchBox.click();
-
-	//test.log(LogStatus.INFO, "I click on search box");
 
 	}
 
@@ -95,8 +89,6 @@
 	waitsUtil.waitForElementToClickable(selectItem);
 
 	selectItem.click();
-
-	//test.log(LogStatus.INFO, "I click on search box");
 
 	}
 
@@ -123,8 +115,6 @@
 		Select select=new Select(selectTime);
 
 		select.selectByVisibleText("13:00 hrs - 17:00 hrs");
-
-		//test.log(LogStatus.INFO, "I select timing");
 
 		BuyNow.click();
 
