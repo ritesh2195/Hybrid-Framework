@@ -46,7 +46,7 @@
 	
 	Account.click();
 	
-	test.log(LogStatus.INFO, "Clicked on Account BUtton");
+	//test.log(LogStatus.INFO, "Clicked on Account BUtton");
 	
  	WebDriverWait wait=new WebDriverWait(driver, 20);
     
@@ -54,7 +54,7 @@
 	
 	login.click();
 	
-	test.log(LogStatus.INFO, "Clicked on Login Button");
+	//test.log(LogStatus.INFO, "Clicked on Login Button");
 			
 	}
 	

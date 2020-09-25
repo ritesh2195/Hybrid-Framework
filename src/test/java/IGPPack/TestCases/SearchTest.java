@@ -2,7 +2,8 @@
 
 	import IGPPack.Pages.ValidationPage;
 	import IGPPack.Utilities.Constant;
-	import junit.framework.Assert;
+    import IGPPack.managers.PageObjectManager;
+    import junit.framework.Assert;
 	import org.testng.annotations.Listeners;
 	import org.testng.annotations.Test;
 	import com.relevantcodes.extentreports.LogStatus;
@@ -15,54 +16,52 @@
 
 	public class SearchTest extends BaseClass {
 
+	PageObjectManager pageObjectManager;
+	LaunchPage launchPage;
+	LoginPage loginPage;
+	SearchPage searchPage;
+	ValidationPage validationPage;
+
 	@Test
 	public void searchTest() throws InterruptedException {
-		
-	report=ExtentManager.getInstance();
-		
-	test=report.startTest("SearchTest");
-			
-	test.log(LogStatus.INFO, "SearchTest started");	
 
-	LaunchPage page=new LaunchPage(driver, test);
-	
-	page.goLogin();
-	
-	LoginPage loginPage=new LoginPage(driver, test);
-	
+	pageObjectManager = new PageObjectManager(driver,test);
+
+	launchPage = pageObjectManager.getLaunchPage();
+
+	loginPage = pageObjectManager.getLoginPage();
+
+	searchPage = pageObjectManager.getSearchPage();
+
+	validationPage = pageObjectManager.getValidationPage();
+
+	launchPage.goLogin();
+
 	loginPage.doLogin(Constant.loginEmail,Constant.loginPassword);
 
 	Thread.sleep(5000);
 
-	SearchPage searchTest=new SearchPage(driver, test);
+	searchPage.searchItem(Constant.Item);
+
+	String searchText=searchPage.getText();
 	
-	searchTest.searchItem(Constant.Item);
-	
-	searchTest.selectProduct();
+	searchPage.selectProduct();
 
-	searchTest.setDeliveryDetails(Constant.Pincode);
+	String actualText=validationPage.validateText();
 
-	searchTest.checkOutProduct();
+	Assert.assertEquals(searchText,actualText);
 
-	searchTest.setDelivery();
+	searchPage.setDeliveryDetails(Constant.Pincode);
 
-	ValidationPage validationPage=new ValidationPage(driver);
+	searchPage.checkOutProduct();
+
+	Thread.sleep(5000);
+
+	searchPage.setDelivery();
 
 	boolean result=validationPage.verifySearchTest();
 
 	Assert.assertTrue(result);
 
-	if(result) {
-
-		reportPass("Search Test is Passed");
-
-	}else {
-
-	reportFail("Search Test is failed");
-
-	Assert.fail();
-
 	}
-	}
-
 	}

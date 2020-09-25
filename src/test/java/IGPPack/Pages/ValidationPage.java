@@ -18,6 +18,9 @@ public class ValidationPage {
     @FindBy(xpath = "//*[text()='Place Order']")
     private WebElement searchPageElement;
 
+    @FindBy(className = "pdp-product-name")
+    private WebElement textElement;
+
     @FindBy(xpath = "//*[text()='CP']")
     private WebElement singupPageElement;
 
@@ -53,5 +56,10 @@ public class ValidationPage {
         Account.click();
 
         return email.getText();
+    }
+
+    public String validateText(){
+
+        return textElement.getText();
     }
 }

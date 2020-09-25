@@ -3,6 +3,7 @@
 	import java.util.concurrent.TimeUnit;
 
 	import IGPPack.Utilities.WaitsUtil;
+	import org.openqa.selenium.Keys;
 	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.support.FindBy;
@@ -55,10 +56,10 @@
 	@FindBy(id="buy-now")
 	private WebElement BuyNow;
 	
-	@FindBy(css="*[class^='c-btn-po']")
+	@FindBy(css="#enabled-button")
 	private WebElement checkOut;
 	
-	@FindBy(xpath="//*[text()='Deliver Here']")
+	@FindBy(css="#deliver-btn-2587230")
 	private WebElement Delivery;
 	
 	public SearchPage(WebDriver driver,ExtentTest test) {
@@ -79,13 +80,13 @@
 
 	searchItem.sendKeys(item);
 
-	test.log(LogStatus.INFO, "I search item");
+	//test.log(LogStatus.INFO, "I search item");
 
 	waitsUtil.waitForElementToClickable(searchBox);
 
 	searchBox.click();
 
-	test.log(LogStatus.INFO, "I click on search box");
+	//test.log(LogStatus.INFO, "I click on search box");
 
 	}
 
@@ -95,19 +96,25 @@
 
 	selectItem.click();
 
-	test.log(LogStatus.INFO, "I click on search box");
+	//test.log(LogStatus.INFO, "I click on search box");
 
 	}
 
 	public void setDeliveryDetails(String pincode){
 
+		//locationPincode.sendKeys(pincode);
+
+		locationPincode.sendKeys(Keys.ENTER);
+
 		locationPincode.sendKeys(pincode);
 
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
+		//pinCodeCheck.click();
 
 		deliveryDate.click();
 
@@ -115,9 +122,9 @@
 
 		Select select=new Select(selectTime);
 
-		select.selectByVisibleText("9:00 hrs - 13:00 hrs");
+		select.selectByVisibleText("13:00 hrs - 17:00 hrs");
 
-		test.log(LogStatus.INFO, "I select timing");
+		//test.log(LogStatus.INFO, "I select timing");
 
 		BuyNow.click();
 
@@ -135,6 +142,11 @@
 		waitsUtil.waitForVisibilityOfElement(Delivery);
 
 		Delivery.click();
+	}
+
+	public String getText(){
+
+		return selectItem.getText();
 	}
 
 	}
