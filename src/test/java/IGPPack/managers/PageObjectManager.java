@@ -14,7 +14,7 @@ public class PageObjectManager {
     private WebDriver driver;
     private ExtentTest test;
 
-    public PageObjectManager(WebDriver driver, ExtentTest test){
+    public PageObjectManager(WebDriver driver){
 
         this.driver = driver;
         this.test = test;

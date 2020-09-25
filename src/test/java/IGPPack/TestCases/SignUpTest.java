@@ -29,7 +29,7 @@ import IGPPack.Utilities.ExtentManager;
 	@Test
 	public void signUpTest() {
 
-	pageObjectManager = new PageObjectManager(driver,test);
+	pageObjectManager = new PageObjectManager(driver);
 
 	launchPage = pageObjectManager.getLaunchPage();
 

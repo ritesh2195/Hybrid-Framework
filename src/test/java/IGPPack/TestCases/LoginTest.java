@@ -2,6 +2,7 @@
 
 	import java.util.HashMap;
 	import IGPPack.Pages.ValidationPage;
+	import IGPPack.managers.PageObjectManager;
 	import org.testng.Assert;
 	import org.testng.SkipException;
 	import org.testng.annotations.*;
@@ -9,12 +10,16 @@
 	import IGPPack.Pages.LaunchPage;
 	import IGPPack.Pages.LoginPage;
 	import IGPPack.Utilities.DataUtil;
-	import IGPPack.Utilities.ExtentManager;
 	import IGPPack.Utilities.MyXLSReader1;
 
 	@Listeners(ListenerTest.class)
 	
 	public class LoginTest extends BaseClass {
+
+	PageObjectManager pageObjectManager;
+	LaunchPage launchPage;
+	LoginPage loginPage;
+	ValidationPage validationPage;
 
 	@DataProvider
 	public Object[][] getData() {
@@ -22,8 +27,6 @@
 	Object[][] obj=null;
 		
 	try{
-		
-	//xls=new MyXLSReader1(prop.getProperty("excelFilePath"));
 
 	xls=new MyXLSReader1(config.getExcelFilePath());
 	
@@ -47,17 +50,19 @@
 		
 	}
 
-	LaunchPage launchPage=new LaunchPage(driver);
-	
+	pageObjectManager= new PageObjectManager(driver);
+
+	launchPage=pageObjectManager.getLaunchPage();
+
 	launchPage.goLogin();
 	
 	Thread.sleep(5000);
 	
-	LoginPage loginPage=new LoginPage(driver, test);
+	loginPage=pageObjectManager.getLoginPage();
 
     loginPage.doLogin(map.get("Username"), map.get("Password"));
 
-    ValidationPage validationPage = new ValidationPage(driver);
+	validationPage=pageObjectManager.getValidationPage();
 
     String expectedRes = map.get("ExpectedResult");
 
@@ -77,8 +82,6 @@
 
 		 if (actualResult == expectedResult) {
 
-			 reportPass("LoginTest got passed");
-
 			 loginPage.Logout();
 
 		 }
@@ -86,8 +89,6 @@
      else {
 
 	  loginPage.navigateHomePage();
-
-      reportFail("LoginTest got failed");
 
       Assert.fail("LoginTest got failed");
 

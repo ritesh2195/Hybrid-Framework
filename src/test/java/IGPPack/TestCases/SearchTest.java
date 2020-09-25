@@ -25,7 +25,7 @@
 	@Test
 	public void searchTest() throws InterruptedException {
 
-	pageObjectManager = new PageObjectManager(driver,test);
+	pageObjectManager = new PageObjectManager(driver);
 
 	launchPage = pageObjectManager.getLaunchPage();
 
