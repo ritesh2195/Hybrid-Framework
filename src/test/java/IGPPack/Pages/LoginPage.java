@@ -64,6 +64,42 @@
 
 	}
 
+	 public void doLogin() {
+
+	 WebDriverWait wait=new WebDriverWait(driver, 20);
+
+	 wait.until(ExpectedConditions.visibilityOf(loginField));
+
+	 loginField.clear();
+
+	 loginField.sendKeys("");
+
+	 Password.clear();
+
+	 Password.sendKeys("");
+
+	 loginButton.click();
+
+	}
+
+	public void doLogin(String loginId) {
+
+	WebDriverWait wait=new WebDriverWait(driver, 20);
+
+	wait.until(ExpectedConditions.visibilityOf(loginField));
+
+	loginField.clear();
+
+	loginField.sendKeys(loginId);
+
+	Password.clear();
+
+	Password.sendKeys("");
+
+	loginButton.click();
+
+	}
+
 	public void Logout(){
 
 	wait = new WebDriverWait(driver,10);
