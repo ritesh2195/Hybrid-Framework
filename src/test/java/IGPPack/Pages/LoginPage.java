@@ -9,12 +9,8 @@
 	import org.openqa.selenium.support.ui.ExpectedConditions;
 	import org.openqa.selenium.support.ui.WebDriverWait;
 
-	public class LoginPage {
-		
-	WebDriver driver;
-	ExtentTest test;
-	WebDriverWait wait;
-	
+	public class LoginPage extends BasePage {
+
 	@FindBy(id="com-e-m-field")
 	private WebElement loginField;
 	
@@ -37,20 +33,16 @@
 	private WebElement Account;
 	
 	public LoginPage(WebDriver driver,ExtentTest test) {
-		
-	this.driver=driver;
-		
-	this.test=test;
 
-	PageFactory.initElements(driver, this);
+		super(driver);
+
+		PageFactory.initElements(driver, this);
 	
 	}
 	
 	public void doLogin(String loginId, String password) {
-		
-	WebDriverWait wait=new WebDriverWait(driver, 20);
-	
-	wait.until(ExpectedConditions.visibilityOf(loginField));
+
+	waitForElementToClickable(loginField);
 
 	loginField.clear();
 		
@@ -60,15 +52,15 @@
 	
 	Password.sendKeys(password);
 
+	waitForElementToClickable(loginButton);
+
 	loginButton.click();
 
 	}
 
 	 public void doLogin() {
 
-	 WebDriverWait wait=new WebDriverWait(driver, 20);
-
-	 wait.until(ExpectedConditions.visibilityOf(loginField));
+	 waitForElementToClickable(loginField);
 
 	 loginField.clear();
 
@@ -84,9 +76,7 @@
 
 	public void doLogin(String loginId) {
 
-	WebDriverWait wait=new WebDriverWait(driver, 20);
-
-	wait.until(ExpectedConditions.visibilityOf(loginField));
+	waitForElementToClickable(loginField);
 
 	loginField.clear();
 
@@ -102,24 +92,18 @@
 
 	public void Logout(){
 
-	wait = new WebDriverWait(driver,10);
-
-	wait.until(ExpectedConditions.visibilityOf(AccountButton));
+	waitForElementToClickable(AccountButton);
 
 	AccountButton.click();
 
-	wait.until(ExpectedConditions.visibilityOf(logout));
+	waitForElementToClickable(logout);
 
 	logout.click();
 	}
 
 	public void navigateHomePage(){
 
-	wait = new WebDriverWait(driver,10);
-
-	//wait.until(ExpectedConditions.invisibilityOf(Account));
-
-	wait.until(ExpectedConditions.elementToBeClickable(homePage));
+	waitForElementToClickable(homePage);
 
 	homePage.click();
 

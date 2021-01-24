@@ -2,9 +2,11 @@ package IGPPack.TestCases;
 
 import IGPPack.Utilities.MyXLSReader1;
 import IGPPack.Utilities.ReadConfig;
+import IGPPack.managers.FileReaderManager;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -34,26 +36,28 @@ public class BaseClass {
     @BeforeClass
     public void setUp(){
 
-        config = new ReadConfig();
+        String url = FileReaderManager.getInstance().getConfigReader().getURL();
 
-        if(config.getBrowserType().equalsIgnoreCase("chrome")){
+        String browserType = FileReaderManager.getInstance().getConfigReader().getBrowserType();
 
-            System.setProperty(chromeProperty, config.getChromePath());
+        if(browserType.equalsIgnoreCase("chrome")){
+
+            WebDriverManager.chromedriver().setup();
 
             driver = new  ChromeDriver();
 
-        } else if (config.getBrowserType().equalsIgnoreCase("firefox")){
+        } else if (browserType.equalsIgnoreCase("firefox")){
 
-            System.setProperty(firefoxProperty, config.getFirefoxPath());
+            WebDriverManager.firefoxdriver().setup();
 
             driver = new FirefoxDriver();
         }
 
         driver.manage().window().maximize();
 
-        driver.get(config.getURL());
+        driver.get(url);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 

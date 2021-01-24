@@ -66,7 +66,7 @@ import IGPPack.Utilities.ExtentManager;
 	
 	String result=validationPage.verifySignUpTest();
 
-	Assert.assertEquals(result,Constant.mail);
+	Assert.assertEquals(result,Constant.mail.toLowerCase());
 	
 
 	}

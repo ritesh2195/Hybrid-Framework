@@ -13,7 +13,7 @@
 	public class SignUpPage extends base {
 		
 	WebDriver driver;
-	ExtentTest test;
+	//ExtentTest test;
 		
 	@FindBy(id="email")
 	private WebElement Email;
@@ -56,9 +56,7 @@
 	public SignUpPage(WebDriver driver ) {
 		
 	this.driver=driver;
-	
-	this.test=test;
-	
+
 	PageFactory.initElements(driver, this);
 		
 	}
@@ -71,7 +69,7 @@
 
 		Email.sendKeys(email);
 
-		test.log(LogStatus.INFO, "enter email-id ");
+		//test.log(LogStatus.INFO, "enter email-id ");
 	}
 
 	public void setPassword(String password){
@@ -82,7 +80,6 @@
 
 		Password.sendKeys(password);
 
-		test.log(LogStatus.INFO, "enter password");
 	}
 
 	public void setCountry(String country){
@@ -90,8 +87,6 @@
 		Country.clear();
 
 		Country.sendKeys(country);
-
-		test.log(LogStatus.INFO, "enter country name");
 
 	}
 
@@ -101,24 +96,23 @@
 
 		Mobile.sendKeys(no);
 
-		test.log(LogStatus.INFO,"Enter Mobile Number");
-
 	}
 
 	public void clickSubmit(){
 
-		Submit.click();
+		waitsUtil.waitForElementToClickable(Submit);
 
-		test.log(LogStatus.INFO, "click on submit button");
+		Submit.click();
 	}
 
 	public void setFirstName(String fName){
+
+		waitsUtil.waitForVisibilityOfElement(firstName);
 
 		firstName.clear();
 
 		firstName.sendKeys(fName);
 
-		test.log(LogStatus.INFO, "enter first name");
 	}
 
 	public void setLastName(String lName){
@@ -126,8 +120,6 @@
 		lastName.clear();
 
 		lastName.sendKeys(lName);
-
-		test.log(LogStatus.INFO, "enter last name");
 	}
 
 	public void setDOB(){
@@ -147,8 +139,6 @@
 		waitsUtil.waitForElementToClickable(date);
 
 		date.click();
-
-		test.log(LogStatus.INFO, "enter date of birth");
 
 	}
 

@@ -6,13 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ValidationPage {
+public class ValidationPage extends BasePage {
 
-    WaitsUtil waitsUtil;
-
-    WebDriver driver;
-
-    @FindBy(xpath = "//*[text()='RM']")
+    @FindBy(xpath = "//div[@class='icon-wrapper top-action-icons quick-menu']//p")
     private WebElement loginPageElement;
 
     @FindBy(xpath = "//*[text()='Place Order']")
@@ -32,12 +28,14 @@ public class ValidationPage {
 
     public ValidationPage(WebDriver driver){
 
-        this.driver = driver;
+        super(driver);
 
         PageFactory.initElements(driver, this);
     }
 
     public boolean verifyLoginTest(){
+
+        waitForElementVisible(loginPageElement);
 
         return loginPageElement.isDisplayed();
     }
@@ -49,16 +47,18 @@ public class ValidationPage {
 
     public String verifySignUpTest(){
 
-//        waitsUtil=new WaitsUtil(driver,20);
-//
-//        waitsUtil.waitForElementToClickable(Account);
+        waitForElementToClickable(Account);
 
         Account.click();
+
+        waitForElementVisible(email);
 
         return email.getText();
     }
 
     public String validateText(){
+
+        waitForElementVisible(textElement);
 
         return textElement.getText();
     }

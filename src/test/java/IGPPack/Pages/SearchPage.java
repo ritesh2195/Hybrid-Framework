@@ -14,12 +14,8 @@
 	import com.relevantcodes.extentreports.LogStatus;
 	import org.openqa.selenium.support.ui.WebDriverWait;
 
-	public class SearchPage {
-		
-	WebDriver driver;
-	ExtentTest test;
-	WaitsUtil waitsUtil;
-		
+	public class SearchPage extends BasePage {
+
 	@FindBy(name="q")
 	private WebElement searchItem;
 	
@@ -63,13 +59,11 @@
 	private WebElement Delivery;
 	
 	public SearchPage(WebDriver driver) {
-		
-	this.driver=driver;
 
-	PageFactory.initElements(driver, this);
+		super(driver);
 
-	waitsUtil= new WaitsUtil(driver,10);
-		
+		PageFactory.initElements(driver, this);
+
 	}
 
 	public void searchItem(String item){
@@ -78,7 +72,7 @@
 
 	searchItem.sendKeys(item);
 
-	waitsUtil.waitForElementToClickable(searchBox);
+	waitForElementToClickable(searchBox);
 
 	searchBox.click();
 
@@ -86,7 +80,7 @@
 
 	public void selectProduct(){
 
-	waitsUtil.waitForElementToClickable(selectItem);
+	waitForElementToClickable(selectItem);
 
 	selectItem.click();
 
@@ -100,17 +94,11 @@
 
 		locationPincode.sendKeys(pincode);
 
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		//pinCodeCheck.click();
+		waitForElementToClickable(deliveryDate);
 
 		deliveryDate.click();
 
-		waitsUtil.waitForVisibilityOfElement(selectTime);
+		waitForElementToClickable(selectTime);
 
 		Select select=new Select(selectTime);
 
@@ -122,14 +110,14 @@
 
 	public void checkOutProduct(){
 
-		waitsUtil.waitForVisibilityOfElement(checkOut);
+		waitForElementToClickable(checkOut);
 
 		checkOut.click();
 	}
 
 	public void setDelivery(){
 
-		waitsUtil.waitForVisibilityOfElement(Delivery);
+		waitForElementToClickable(Delivery);
 
 		Delivery.click();
 	}

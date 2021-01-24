@@ -11,12 +11,8 @@
 	import com.relevantcodes.extentreports.ExtentTest;
 	import com.relevantcodes.extentreports.LogStatus;
 	
-	public class LaunchPage {
-		
-	WebDriver driver;
-	ExtentTest test;
-	WaitsUtil waitsUtil;
-	
+	public class LaunchPage extends BasePage {
+
 	@FindBy(name="q")
 	private WebElement SearchBox;
 	
@@ -33,10 +29,10 @@
 	private WebElement SignUp;
 	
 	public LaunchPage(WebDriver driver) {
-		
-	this.driver=driver;
 
-	PageFactory.initElements(driver, this);
+		super(driver);
+
+	    PageFactory.initElements(driver, this);
 		
 	}
 	
@@ -44,21 +40,19 @@
 	
 	Account.click();
 
- 	WebDriverWait wait=new WebDriverWait(driver, 20);
-    
-    wait.until(ExpectedConditions.elementToBeClickable(login));
-	
+	waitForElementToClickable(login);
+
 	login.click();
 
 	}
 	
 	public void goSignUp() {
 
-	waitsUtil =new WaitsUtil(driver,10);
-		
+	waitForElementToClickable(Account);
+
 	Account.click();
 
-	waitsUtil.waitForElementToClickable(SignUp);
+	waitForElementToClickable(SignUp);
 
 	SignUp.click();
 		

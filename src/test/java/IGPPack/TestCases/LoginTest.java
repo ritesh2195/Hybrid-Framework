@@ -2,6 +2,7 @@
 
 	import java.util.HashMap;
 	import IGPPack.Pages.ValidationPage;
+	import IGPPack.managers.FileReaderManager;
 	import IGPPack.managers.PageObjectManager;
 	import org.testng.Assert;
 	import org.testng.SkipException;
@@ -28,7 +29,7 @@
 		
 	try{
 
-	xls=new MyXLSReader1(config.getExcelFilePath());
+	xls=new MyXLSReader1(FileReaderManager.getInstance().getConfigReader().getExcelFilePath());
 	
 	obj = DataUtil.getTestData(xls, "LoginTest", "Data");
 	
