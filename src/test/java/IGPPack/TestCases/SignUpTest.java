@@ -64,10 +64,15 @@ import IGPPack.Utilities.ExtentManager;
 
 	validationPage = pageObjectManager.getValidationPage();
 	
-	String result=validationPage.verifySignUpTest();
+	String email=validationPage.verifySignUpEmail();
 
-	Assert.assertEquals(result,Constant.mail.toLowerCase());
-	
+	String name = validationPage.verifySignName();
+
+	Assert.assertEquals(email,Constant.mail.toLowerCase());
+
+	String actualName = Constant.firstName.toLowerCase() +" "+ Constant.lastName.toLowerCase();
+
+	Assert.assertEquals(name.toLowerCase(),actualName);
 
 	}
 

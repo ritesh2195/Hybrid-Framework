@@ -29,6 +29,9 @@ public class ValidationPage extends BasePage {
     @FindBy(xpath = "//div[@class='user-details']//p[2]")
     private WebElement email;
 
+    @FindBy(xpath = "//div[@class='user-details']//p[1]")
+    private WebElement name;
+
     public ValidationPage(WebDriver driver){
 
         super(driver);
@@ -55,7 +58,7 @@ public class ValidationPage extends BasePage {
         return searchPageElement.isDisplayed();
     }
 
-    public String verifySignUpTest(){
+    public String verifySignUpEmail(){
 
         waitForElementToClickable(Account);
 
@@ -64,6 +67,13 @@ public class ValidationPage extends BasePage {
         waitForElementVisible(email);
 
         return email.getText();
+    }
+
+    public String verifySignName(){
+
+        waitForElementVisible(name);
+
+        return name.getText();
     }
 
     public String validateText(){
