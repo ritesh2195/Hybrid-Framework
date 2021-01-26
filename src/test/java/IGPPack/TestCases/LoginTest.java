@@ -87,6 +87,10 @@
 
 		 Assert.assertTrue(actualResult);
 
+		 String email = loginPage.getEmail();
+
+		 Assert.assertEquals(map.get("Username"),email);
+
 		 }
      else {
 

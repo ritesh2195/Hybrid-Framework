@@ -20,8 +20,11 @@
 	@FindBy(xpath="//*[text()='Login']")
 	private WebElement loginButton;
 
-	@FindBy(xpath="//*[text()='RM']")
+	@FindBy(xpath="//div[@class='icon-wrapper top-action-icons quick-menu']//p")
 	private WebElement AccountButton;
+
+	@FindBy(xpath = "//div[@class='user-details']//p[2]")
+	private WebElement Email;
 
 	@FindBy(xpath = "//*[text()='logout']")
 	private WebElement logout;
@@ -90,15 +93,16 @@
 
 	}
 
-	public void Logout(){
+	public String getEmail(){
 
 	waitForElementToClickable(AccountButton);
 
 	AccountButton.click();
 
-	waitForElementToClickable(logout);
+	waitForElementVisible(Email);
 
-	logout.click();
+	return Email.getText();
+
 	}
 
 	public void navigateHomePage(){
