@@ -65,6 +65,10 @@
 
 	validationPage=pageObjectManager.getValidationPage();
 
+	//boolean actualResult = validationPage.verifyLoginTest();
+
+	//Assert.assertTrue(actualResult);
+
     String expectedRes = map.get("ExpectedResult");
 
     boolean expectedResult = true;
@@ -79,22 +83,18 @@
 
      if (expectedResult) {
 
-		 boolean actualResult = validationPage.verifyLoginTest();
+		 boolean actualResult = validationPage.verifySuccessLoginTest();
 
-		 if (actualResult == expectedResult) {
-
-			 loginPage.Logout();
+		 Assert.assertTrue(actualResult);
 
 		 }
-	 }
      else {
 
-	  loginPage.navigateHomePage();
+     	boolean actualResult = validationPage.verifyFailedLoginTest();
 
-      Assert.fail("LoginTest got failed");
+     	Assert.assertTrue(actualResult);
 
         }
-
 	}
 
 	}

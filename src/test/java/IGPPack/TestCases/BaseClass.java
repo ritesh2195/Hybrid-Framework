@@ -33,7 +33,7 @@ public class BaseClass {
     private final String chromeProperty = "webdriver.chrome.driver";
     private final String firefoxProperty = "webdriver.gecko.driver";
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp(){
 
         String url = FileReaderManager.getInstance().getConfigReader().getURL();
@@ -118,7 +118,7 @@ public class BaseClass {
 
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown(){
 
         driver.quit();

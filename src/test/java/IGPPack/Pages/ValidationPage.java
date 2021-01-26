@@ -11,6 +11,9 @@ public class ValidationPage extends BasePage {
     @FindBy(xpath = "//div[@class='icon-wrapper top-action-icons quick-menu']//p")
     private WebElement loginPageElement;
 
+    @FindBy(xpath = "//div[@class='submit_msg has_error']")
+    private WebElement failLogin;
+
     @FindBy(xpath = "//*[text()='Place Order']")
     private WebElement searchPageElement;
 
@@ -33,11 +36,18 @@ public class ValidationPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean verifyLoginTest(){
+    public boolean verifySuccessLoginTest(){
 
         waitForElementVisible(loginPageElement);
 
         return loginPageElement.isDisplayed();
+    }
+
+    public boolean verifyFailedLoginTest(){
+
+        waitForElementVisible(failLogin);
+
+        return failLogin.isDisplayed();
     }
 
     public boolean verifySearchTest(){

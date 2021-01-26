@@ -1,4 +1,23 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 73.166 s - in TestSuite
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 61.141 s <<< FAILURE! - in TestSuite
+loginTest(IGPPack.TestCases.LoginTest)  Time elapsed: 12.342 s  <<< FAILURE!
+java.lang.AssertionError: LoginTest got failed
+	at IGPPack.TestCases.LoginTest.loginTest(LoginTest.java:94)
+
+loginTest(IGPPack.TestCases.LoginTest)  Time elapsed: 28.712 s  <<< FAILURE!
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //div[@class='icon-wrapper top-action-icons quick-menu']//p' (tried for 20 second(s) with 500 milliseconds interval)
+	at IGPPack.TestCases.LoginTest.loginTest(LoginTest.java:82)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='icon-wrapper top-action-icons quick-menu']//p"}
+  (Session info: chrome=87.0.4280.141)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-D0ODKLV', ip: '192.168.43.211', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 87.0.4280.141, chrome: {chromedriverVersion: 87.0.4280.88 (89e2380a3e36c..., userDataDir: C:\Users\admin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:64219}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: aaacbdbd1e1566859f23889d533c07c5
+*** Element info: {Using=xpath, value=//div[@class='icon-wrapper top-action-icons quick-menu']//p}
+	at IGPPack.TestCases.LoginTest.loginTest(LoginTest.java:82)
+
