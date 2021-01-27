@@ -1,19 +1,12 @@
 	package IGPPack.TestCases;
 
-	import IGPPack.Pages.ValidationPage;
 	import IGPPack.Utilities.Constant;
 	import IGPPack.managers.PageObjectManager;
 	import org.testng.Assert;
 	import org.testng.annotations.Listeners;
 	import org.testng.annotations.Test;
-
-import com.relevantcodes.extentreports.LogStatus;
-
-import IGPPack.Base.base;
-import IGPPack.Pages.LaunchPage;
-import IGPPack.Pages.SignUpPage;
-import IGPPack.Utilities.ExtentManager;
-
+	import IGPPack.Pages.LaunchPage;
+	import IGPPack.Pages.SignUpPage;
 	import java.util.List;
 
 	@Listeners(ListenerTest.class)
