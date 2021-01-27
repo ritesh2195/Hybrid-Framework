@@ -1,20 +1,19 @@
 	package IGPPack.Pages;
 
-	import IGPPack.Utilities.WaitsUtil;
+	import org.openqa.selenium.By;
 	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.support.FindAll;
 	import org.openqa.selenium.support.FindBy;
 	import org.openqa.selenium.support.PageFactory;
-	import com.relevantcodes.extentreports.ExtentTest;
-	import com.relevantcodes.extentreports.LogStatus;
-	import IGPPack.Base.base;
 	import org.openqa.selenium.support.ui.Select;
 
-	public class SignUpPage extends base {
-		
-	WebDriver driver;
-	//ExtentTest test;
-		
+	import java.util.ArrayList;
+	import java.util.Iterator;
+	import java.util.List;
+
+	public class SignUpPage extends BasePage {
+
 	@FindBy(id="email")
 	private WebElement Email;
 	
@@ -51,30 +50,30 @@
 	@FindBy(xpath="//*[text()='Sign me up!']")
 	private WebElement SignUp;
 
-	WaitsUtil waitsUtil;
-	
-	public SignUpPage(WebDriver driver ) {
-		
-	this.driver=driver;
+	@FindBy(id = "user-menu")
+	private WebElement UserMenu;
 
-	PageFactory.initElements(driver, this);
+	@FindAll(@FindBy(xpath = "//div[@class='user-details']//p"))
+	private List<WebElement> UserDetails;
+
+	public SignUpPage(WebDriver driver ) {
+
+		super(driver);
+
+		PageFactory.initElements(driver, this);
 		
 	}
 	
 	public void setEmail(String email){
 
-		waitsUtil = new WaitsUtil(driver,20);
-
 		Email.clear();
 
 		Email.sendKeys(email);
-
-		//test.log(LogStatus.INFO, "enter email-id ");
 	}
 
 	public void setPassword(String password){
 
-		waitsUtil.waitForVisibilityOfElement(Password);
+		waitForElementVisible(Password);
 
 		Password.clear();
 
@@ -100,14 +99,14 @@
 
 	public void clickSubmit(){
 
-		waitsUtil.waitForElementToClickable(Submit);
+		waitForElementVisible(Submit);
 
 		Submit.click();
 	}
 
 	public void setFirstName(String fName){
 
-		waitsUtil.waitForVisibilityOfElement(firstName);
+		waitForElementVisible(firstName);
 
 		firstName.clear();
 
@@ -126,7 +125,7 @@
 
 		DOB.click();
 
-		waitsUtil.waitForElementToClickable(dob_year);
+		waitForElementVisible(dob_year);
 
 		Select select = new Select(dob_year);
 
@@ -136,7 +135,7 @@
 
 		select1.selectByVisibleText("September");
 
-		waitsUtil.waitForElementToClickable(date);
+		waitForElementToClickable(date);
 
 		date.click();
 
@@ -145,6 +144,29 @@
 	public void clickSignUp(){
 
 		SignUp.click();
+	}
+
+	public List<String> verifySignUpTest(){
+
+		waitForElementToClickable(UserMenu);
+
+		UserMenu.click();
+
+		List<String> list = new ArrayList<>();
+
+		Iterator<WebElement> iterator = UserDetails.iterator();
+
+		while (iterator.hasNext()){
+
+			WebElement element = iterator.next();
+
+			waitForElementVisible(element);
+
+			list.add(element.getText());
+		}
+
+		return list;
+
 	}
 		
 	}

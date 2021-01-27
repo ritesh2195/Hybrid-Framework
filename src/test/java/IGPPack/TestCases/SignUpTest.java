@@ -17,6 +17,8 @@ import IGPPack.Pages.LaunchPage;
 import IGPPack.Pages.SignUpPage;
 import IGPPack.Utilities.ExtentManager;
 
+	import java.util.List;
+
 	@Listeners(ListenerTest.class)
 	
 	public class SignUpTest extends BaseClass {
@@ -63,16 +65,24 @@ import IGPPack.Utilities.ExtentManager;
 		}
 
 	validationPage = pageObjectManager.getValidationPage();
-	
-	String email=validationPage.verifySignUpEmail();
 
-	String name = validationPage.verifySignName();
+	List<String> userDetails = signUpPage.verifySignUpTest();
 
-	Assert.assertEquals(email,Constant.mail.toLowerCase());
+	String userName = userDetails.get(0);
 
-	String actualName = Constant.firstName.toLowerCase() +" "+ Constant.lastName.toLowerCase();
+	System.out.println(userName);
 
-	Assert.assertEquals(name.toLowerCase(),actualName);
+	String userEmail = userDetails.get(1);
+
+	System.out.println(userEmail);
+
+	String actualName = Constant.firstName.toLowerCase()+ " "+ Constant.lastName.toLowerCase();
+
+	String actualEmail = Constant.mail.toLowerCase();
+
+	Assert.assertEquals(userEmail,actualEmail);
+
+	Assert.assertEquals(userName.toLowerCase(),actualName);
 
 	}
 
