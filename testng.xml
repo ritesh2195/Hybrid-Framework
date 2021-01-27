@@ -4,6 +4,8 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="IGPPack.TestCases.LoginTest"/>
+      <class name="IGPPack.TestCases.SignUpTest"/>
+      <class name="IGPPack.TestCases.SearchTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

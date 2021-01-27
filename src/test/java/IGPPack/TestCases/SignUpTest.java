@@ -4,9 +4,6 @@
 	import IGPPack.Utilities.Constant;
 	import IGPPack.managers.PageObjectManager;
 	import org.testng.Assert;
-	import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 	import org.testng.annotations.Listeners;
 	import org.testng.annotations.Test;
 
@@ -26,7 +23,6 @@ import IGPPack.Utilities.ExtentManager;
 	PageObjectManager pageObjectManager;
 	LaunchPage launchPage;
 	SignUpPage signUpPage;
-	ValidationPage validationPage;
 
 	@Test
 	public void signUpTest() {
@@ -56,15 +52,6 @@ import IGPPack.Utilities.ExtentManager;
 	signUpPage.setDOB();
 
 	signUpPage.clickSignUp();
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
-
-	validationPage = pageObjectManager.getValidationPage();
 
 	List<String> userDetails = signUpPage.verifySignUpTest();
 
