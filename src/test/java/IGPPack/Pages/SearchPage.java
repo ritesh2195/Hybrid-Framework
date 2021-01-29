@@ -81,6 +81,7 @@
 
 	public void setDeliveryDetails(String pincode){
 
+		waitForElementVisible(locationPincode);
 
 		locationPincode.sendKeys(Keys.ENTER);
 

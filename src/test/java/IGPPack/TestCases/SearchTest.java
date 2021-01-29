@@ -55,8 +55,6 @@
 
 	searchPage.checkOutProduct();
 
-	Thread.sleep(5000);
-
 	searchPage.setDelivery();
 
 	boolean result=validationPage.verifySearchTest();

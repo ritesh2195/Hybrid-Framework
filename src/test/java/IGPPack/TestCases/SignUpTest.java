@@ -18,7 +18,7 @@
 	SignUpPage signUpPage;
 
 	@Test
-	public void signUpTest() {
+	public void signUpTest() throws InterruptedException {
 
 	pageObjectManager = new PageObjectManager(driver);
 
@@ -45,6 +45,8 @@
 	signUpPage.setDOB();
 
 	signUpPage.clickSignUp();
+
+	Thread.sleep(5000);
 
 	List<String> userDetails = signUpPage.verifySignUpTest();
 
