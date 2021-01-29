@@ -1,5 +1,6 @@
 package IGPPack.TestCases;
 
+import IGPPack.Utilities.BrowserFactory;
 import IGPPack.Utilities.MyXLSReader1;
 import IGPPack.Utilities.ReadConfig;
 import IGPPack.managers.FileReaderManager;
@@ -24,10 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
 
-    ReadConfig config;
     public static WebDriver driver;
-    public static ExtentTest test;
-    public ExtentReports report;
     public MyXLSReader1 xls;
 
     private final String chromeProperty = "webdriver.chrome.driver";
@@ -39,6 +37,8 @@ public class BaseClass {
         String url = FileReaderManager.getInstance().getConfigReader().getURL();
 
         String browserType = FileReaderManager.getInstance().getConfigReader().getBrowserType();
+
+        //driver =BrowserFactory.getBrowser(browserType);
 
         if(browserType.equalsIgnoreCase("chrome")){
 
@@ -56,9 +56,6 @@ public class BaseClass {
         driver.manage().window().maximize();
 
         driver.get(url);
-
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     public static String takeScreenshot() {
@@ -75,7 +72,6 @@ public class BaseClass {
 
             FileUtils.copyFile(scrFile,destination);
 
-           // FileUtils.copyFile(scrFile, new File("screenshots//"+screenshotFile));
 
         } catch (IOException e) {
 
@@ -85,38 +81,8 @@ public class BaseClass {
 
         return screenshotFile;
 
-        //test.log(LogStatus.INFO,"Screenshot-> "+ test.addScreenCapture(System.getProperty("user.dir")+"//screenshots//"+screenshotFile));
-
     }
 
-
-    public void reportPass(String message) {
-
-        test.log(LogStatus.PASS, message);
-
-        if (report!=null){
-
-            report.endTest(test);
-
-            report.flush();
-        }
-
-    }
-
-    public void reportFail(String message) {
-
-        test.log(LogStatus.FAIL, message);
-
-        takeScreenshot();
-
-        if (report!=null){
-
-            report.endTest(test);
-
-            report.flush();
-        }
-
-    }
 
     @AfterMethod
     public void tearDown(){

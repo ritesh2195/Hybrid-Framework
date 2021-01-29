@@ -143,7 +143,10 @@
 
 	public void clickSignUp(){
 
+		waitForElementToClickable(SignUp);
+
 		SignUp.click();
+
 	}
 
 	public List<String> verifySignUpTest(){
